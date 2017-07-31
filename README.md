@@ -1,3 +1,7 @@
+**Forked from: https://github.com/yoshz/ansible-digitalocean**
+
+---
+
 Digital Ocean Bootstrap
 =======================
 

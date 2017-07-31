@@ -1,5 +1,5 @@
-#!/usr/local/bin/node
-
+#!/usr/bin/env node
+var DigitalOcean = require('do-wrapper');
 var yaml = require('js-yaml');
 var fs   = require('fs');
 var request = require('request');
@@ -25,12 +25,21 @@ try {
 }
 
 var do_client_id = vars.do_client_id;
-var do_api_key = vars.do_api_key;
+var do_api_token = vars.do_api_token;
 
-request(
-  'https://api.digitalocean.com/v1/'+call+'/?client_id='+ do_client_id +'&api_key='+ do_api_key,
-  function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      console.log(JSON.parse(body)) // Show the HTML for the Google homepage.
-    }
-  });
+
+var api = new DigitalOcean(do_api_token, 100);
+
+// request(
+//   'https://api.digitalocean.com/v1/'+call+'/?client_id='+ do_client_id +'&api_key='+ do_api_token,
+//   function (error, response, body) {
+//     if (!error && response.statusCode == 200) {
+//       console.log(JSON.parse(body)) // Show the HTML for the Google homepage.
+//     }
+//   });
+
+api.account((err, res, body) => {
+  console.log(err);
+  console.log(res);
+  console.log(body);
+});

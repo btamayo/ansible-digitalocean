@@ -1,0 +1,28 @@
+# DO API v2 settings
+do_api_token: # Add token here
+
+# DO SSH key settings
+do_ssh_name: # NOTE: If you're reusing an SSH key that's already on DigitalOcean, use the name of the SSH key here.
+do_ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+do_ssh_private_key: "~/.ssh/id_dsa"
+
+# DO droplet settings
+do_region: sfo1
+do_size: 512mb
+do_image: "ubuntu-16-04-x64"
+
+# Swap settings
+swapfile_location: /swapfile
+swapfile_size: 4G
+swapfile_swappiness: 10
+swapfile_vfs_cache_pressure: 50
+
+# System user to create
+ssh_user: # Add a sudo user here
+ssh_groups: "sudo"
+ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+# Non-sudo user
+deploy_ssh_user: # Add non-sudo user here e.g "deploy"
+deploy_ssh_groups: ""
+deploy_ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

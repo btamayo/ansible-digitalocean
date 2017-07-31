@@ -31,7 +31,18 @@
         unique_name=yes
         api_token={{ do_api_token }}
         wait_timeout=600
-      register: do_droplet
+      register: my_droplet
+    
+    - debug: 
+        msg: "ID is {{ my_droplet.droplet.id }}"
+
+    - name: Add tag
+      digital_ocean_tag:
+        resource_id: "{{ my_droplet.droplet.id }}"
+        name: "ansible-managed"
+        state: present
+        api_token: "{{ do_api_token }}"
+
 
     - name: Register DNS
       digital_ocean_domain: >
