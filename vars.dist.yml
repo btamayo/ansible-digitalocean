@@ -2,14 +2,15 @@
 do_api_token: # Add token here
 
 # DO SSH key settings
-do_ssh_name: # NOTE: If you're reusing an SSH key that's already on DigitalOcean, use the name of the SSH key here.
+do_ssh_name: ansible # NOTE: If you're reusing an SSH key that's already on DigitalOcean, use the name of the SSH key here.
 do_ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
-do_ssh_private_key: "~/.ssh/id_dsa"
+do_ssh_private_key: "~/.ssh/id_rsa"
 
 # DO droplet settings
 do_region: sfo1
 do_size: 512mb
 do_image: "ubuntu-16-04-x64"
+do_tag: ansible-managed
 
 # Swap settings
 swapfile_location: /swapfile
@@ -18,11 +19,11 @@ swapfile_swappiness: 10
 swapfile_vfs_cache_pressure: 50
 
 # System user to create
-ssh_user: # Add a sudo user here
+# ssh_user: # Add a sudo user here
 ssh_groups: "sudo"
 ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
 
 # Non-sudo user
-deploy_ssh_user: # Add non-sudo user here e.g "deploy"
-deploy_ssh_groups: ""
-deploy_ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+# non_sudo_user: deploy
+# non_sudo_user_groups: ""
+# non_sudo_user_ssh_pub_key: "{{ lookup('file', '~/.ssh/id_rsa.deploy.pub') }}"

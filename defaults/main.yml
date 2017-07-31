@@ -13,6 +13,7 @@ do_ssh_private_key: "~/.ssh/id_rsa"
 do_region: 10 # Frankfurt
 do_size: 66 # 512
 do_image: 13089823 # Ubuntu 14.04 x32
+do_tag: ansible-managed
 
 # SSH
 ssh_port: 22

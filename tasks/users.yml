@@ -10,5 +10,16 @@
     append=yes
     createhome=yes
 
+- name: Create regular user
+  user: >
+    name="{{ non_sudo_user }}"
+    comment="Regular account"
+    state=present
+    groups="{{ non_sudo_user_groups }}"
+    shell=/bin/bash
+    append=yes
+    createhome=yes
+  when: non_sudo_user is defined
+
 - name: Deploy ssh public key
   authorized_key: user="{{ ssh_user }}" key="{{ ssh_pub_key }}"

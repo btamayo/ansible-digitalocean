@@ -31,18 +31,17 @@
         unique_name=yes
         api_token={{ do_api_token }}
         wait_timeout=600
-      register: my_droplet
+      register: do_droplet
     
     - debug: 
-        msg: "ID is {{ my_droplet.droplet.id }}"
+        msg: "ID is {{ do_droplet.droplet.id }}"
 
     - name: Add tag
       digital_ocean_tag:
-        resource_id: "{{ my_droplet.droplet.id }}"
-        name: "ansible-managed"
+        resource_id: "{{ do_droplet.droplet.id }}"
+        name: "{{ do_tag }}"
         state: present
         api_token: "{{ do_api_token }}"
-
 
     - name: Register DNS
       digital_ocean_domain: >
@@ -63,8 +62,8 @@
         ansible_ssh_user=root
         ansible_ssh_private_key_file="{{ do_ssh_private_key }}"
 
-- hosts: dohosts
 
+- hosts: dohosts
   vars_files:
     - defaults/main.yml
     - vars.yml
